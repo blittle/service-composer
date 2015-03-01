@@ -1,4 +1,4 @@
-# service-composer
+# Service Worker Composer
 A utility for composing Service Worker caching
 
 ## Installation
@@ -46,12 +46,19 @@ of the offline state.
 CACHE_OFFLINE - should be used for resources that you only want to serve from the cache when you are offline. When you are
 online requests never be served from cache. Each subsequent request is placed into the cache for future availability.
 
+Note: You can extend service-composer by extending serviceComposer.types and adding a corresponding implementation to
+serviceComposer.evaluators
+
 #### matcher - optional
 The matcher can be a string or regular expression. The matcher is evaluated on each request url and used to determine
 if which cache config to use. If it is a string, it needs to match the zeroeth index of the request url.
 
-#### customEvaluator - optional
+#### onSuccess - optional
 An optional function to evaluate on a successful request. The function is passed: (response, cache, event, config)
+
+#### evaluator - optional
+Provide a custom evaluator which will be passed the config and event object. Use this if you want to implement
+your own caching functionality outside the types available by default.
 
 ### Example:
 ```javascript
@@ -69,7 +76,7 @@ serviceComposer.compose([
 		name: 'others',
 		version: 1,
 		type: serviceComposer.types.CACHE_OFFLINE,
-		customEvaluator: function(response, cache, event, config) {
+		onSuccess: function(response, cache, event, config) {
 			if(event.request.url.indexOf('page=') > -1) {
 				prefetchImages(response.clone());
 			}
@@ -79,9 +86,8 @@ serviceComposer.compose([
 
 function prefetchImages(response) {
 	response.json().then(function(json) {
-		var urls = [];
-		json.forEach(function(obj) {
-			urls.push(obj.localImages.medPath);
+		var urls = json.map(function(obj) {
+			return obj.localImages.medPath;
 		});
 
 		caches.open('images-1').then(function(cache) {
