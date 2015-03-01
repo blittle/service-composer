@@ -1,0 +1,25 @@
+{
+  "name": "service-composer",
+  "main": "service-composer.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/blittle/service-composer",
+  "authors": [
+    "Bret Little <bret.little@gmail.com>"
+  ],
+  "description": "A utility for composing Service Worker caching",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "service",
+    "worker"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
