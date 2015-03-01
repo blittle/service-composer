@@ -28,16 +28,16 @@ Service-composer allows you to easily setup caching policies based upon url matc
 The composer takes an array of configuration objects. Each http request is matched
 with these configuration objects in the order. Only the first one to match is resolved.
 
-Configuration parameters:
-### name - required
+### Configuration parameters:
+#### name - required
 The name, along with the version, is used to identify the cache. If the name is "images" and the version is "1"
 then a cache with be identified as "images-1". Each time the service worker starts up, all caches are validated
 and those that are incorrect versions or are unknown are deleted.
 
-### version - required
+#### version - required
 Used to identify the cache. Update the version when you want to clear the cache.
 
-### type - required
+#### type - required
 Currently only two types are supported serviceComposer.types.CACHE_ALWAYS and serviceComposer.types.CACHE_OFFLINE
 
 CACHE_ALWAYS - shold be used for resources (like images) that you always want to cache and serve from cache regardless
@@ -46,14 +46,14 @@ of the offline state.
 CACHE_OFFLINE - should be used for resources that you only want to serve from the cache when you are offline. When you are
 online requests never be served from cache. Each subsequent request is placed into the cache for future availability.
 
-### matcher - optional
+#### matcher - optional
 The matcher can be a string or regular expression. The matcher is evaluated on each request url and used to determine
 if which cache config to use. If it is a string, it needs to match the zeroeth index of the request url.
 
-### customEvaluator - optional
+#### customEvaluator - optional
 An optional function to evaluate on a successful request. The function is passed: (response, cache, event, config)
 
-## Example:
+### Example:
 ```javascript
 importScripts('serviceworker-cache-polyfill.js');
 importScripts('service-composer.js');
