@@ -1,0 +1,23 @@
+{
+  "name": "service-composer",
+  "version": "1.0.0",
+  "description": "A utility for composing Service Worker caching",
+  "main": "service-composer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blittle/service-composer.git"
+  },
+  "keywords": [
+    "service",
+    "workers"
+  ],
+  "author": "Bret Little",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blittle/service-composer/issues"
+  },
+  "homepage": "https://github.com/blittle/service-composer"
+}
