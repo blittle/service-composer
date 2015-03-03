@@ -1,7 +1,7 @@
 {
   "name": "service-composer",
   "main": "service-composer.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "https://github.com/blittle/service-composer",
   "authors": [
     "Bret Little <bret.little@gmail.com>"
